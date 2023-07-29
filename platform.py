@@ -30,7 +30,7 @@ class Ststm32Platform(PlatformBase):
         # f = open("xfyer_board_config.JSON", "w")
         # y = json.dump(board_config, f)
         # f.close()
-        print(board_config)
+        
 
         build_core = variables.get(
             "board_build.core", board_config.get("build.core", "arduino"))
@@ -184,10 +184,10 @@ class Ststm32Platform(PlatformBase):
 
         board.manifest["debug"] = debug
 
-        # 将board存储到文件中
-        # f = open("xfyer_board.JSON", "w")
-        # y = json.dump(board, f)
-        # f.close()
+        #将board存储到文件中
+        f = open("xfyer_board.JSON", "w")
+        y = json.dump(board.manifest, f)
+        f.close()
         return board
 
     def configure_debug_session(self, debug_config):
