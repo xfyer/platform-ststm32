@@ -30,7 +30,7 @@ class Ststm32Platform(PlatformBase):
         # f = open("xfyer_board_config.JSON", "w")
         # y = json.dump(board_config, f)
         # f.close()
-
+        print(board_config)
 
         build_core = variables.get(
             "board_build.core", board_config.get("build.core", "arduino"))
