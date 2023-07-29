@@ -27,9 +27,9 @@ class Ststm32Platform(PlatformBase):
         board = variables.get("board")
         board_config = self.board_config(board)
         # 将board_config存储到文件中
-        f = open("xfyer_board_config.JSON", "w")
-        y = json.dump(board_config, f)
-        f.close()
+        # f = open("xfyer_board_config.JSON", "w")
+        # y = json.dump(board_config, f)
+        # f.close()
 
 
         build_core = variables.get(
