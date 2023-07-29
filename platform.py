@@ -26,6 +26,12 @@ class Ststm32Platform(PlatformBase):
     def configure_default_packages(self, variables, targets):
         board = variables.get("board")
         board_config = self.board_config(board)
+        # 将board_config存储到文件中
+        f = open("xfyer_board_config.JSON", "w")
+        y = json.dump(board_config, f)
+        f.close()
+
+
         build_core = variables.get(
             "board_build.core", board_config.get("build.core", "arduino"))
         build_mcu = variables.get("board_build.mcu", board_config.get("build.mcu", ""))
@@ -177,6 +183,11 @@ class Ststm32Platform(PlatformBase):
             debug["tools"][link]["default"] = link in debug.get("default_tools", [])
 
         board.manifest["debug"] = debug
+
+        # 将board存储到文件中
+        f = open("xfyer_board.JSON", "w")
+        y = json.dump(board, f)
+        f.close()
         return board
 
     def configure_debug_session(self, debug_config):
