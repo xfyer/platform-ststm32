@@ -185,9 +185,9 @@ class Ststm32Platform(PlatformBase):
         board.manifest["debug"] = debug
 
         # 将board存储到文件中
-        f = open("xfyer_board.JSON", "w")
-        y = json.dump(board, f)
-        f.close()
+        # f = open("xfyer_board.JSON", "w")
+        # y = json.dump(board, f)
+        # f.close()
         return board
 
     def configure_debug_session(self, debug_config):
