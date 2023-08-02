@@ -369,7 +369,7 @@ if board.get("build.stm32cube.custom_dsp_library", "no") == "no":
 # Generate a default stm32xxx_hal_conf.h
 generate_hal_config_file()
 
-if board.get("build.stm32cube.disable_embedded_inc", "no") == "no":
+if board.get("build.stm32cube.disable_embedded_src", "no") == "no":
     env.BuildSources(
         os.path.join("$BUILD_DIR", "FrameworkHALDriver"),
         os.path.join(
