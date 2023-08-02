@@ -369,22 +369,17 @@ if board.get("build.stm32cube.custom_dsp_library", "no") == "no":
 # Generate a default stm32xxx_hal_conf.h
 generate_hal_config_file()
 
-# if board.get("build.stm32cube.disable_embedded_inc", "no") == "no":
-#     env.BuildSources(
-#         os.path.join("$BUILD_DIR", "FrameworkHALDriver"),
-#         os.path.join(
-#             FRAMEWORK_DIR,
-#             "Drivers",
-#             MCU_FAMILY.upper() + "xx_HAL_Driver",
-#         ),
-#         src_filter="+<*> -<Src/*_template.c> -<Src/Legacy>",
-#     )
-# else:
-#     env.BuildSources(
-#         "",
-#         "",
-#         src_filter="+<*> -<Src/*_template.c> -<Src/Legacy>",
-#     )
+if board.get("build.stm32cube.disable_embedded_inc", "no") == "no":
+    env.BuildSources(
+        os.path.join("$BUILD_DIR", "FrameworkHALDriver"),
+        os.path.join(
+            FRAMEWORK_DIR,
+            "Drivers",
+            MCU_FAMILY.upper() + "xx_HAL_Driver",
+        ),
+        src_filter="+<*> -<Src/*_template.c> -<Src/Legacy>",
+    )
+
 
 #
 # CMSIS library
