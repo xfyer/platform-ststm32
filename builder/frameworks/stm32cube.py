@@ -224,7 +224,7 @@ env_cpppath = [
     "$PROJECT_SRC_DIR",
     "$PROJECT_INCLUDE_DIR"
 ]
-if board.get("build.stm32cube.disable_embedded_src", "no") == "yes":
+if board.get("build.stm32cube.disable_embedded_src", "yes") == "no":
     env_cpppath.append( os.path.join(FRAMEWORK_DIR, "Drivers", "CMSIS", "Include") )
     env_cpppath.append( os.path.join(
         FRAMEWORK_DIR,
