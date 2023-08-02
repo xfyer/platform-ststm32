@@ -220,6 +220,34 @@ machine_flags = [
     "-mcpu=%s" % board.get("build.cpu"),
 ]
 
+env_cpppath = [
+    "$PROJECT_SRC_DIR",
+    "$PROJECT_INCLUDE_DIR"
+]
+if board.get("build.stm32cube.disable_embedded_src", "no") == "yes":
+    env_cpppath.append( os.path.join(FRAMEWORK_DIR, "Drivers", "CMSIS", "Include") )
+    env_cpppath.append( os.path.join(
+        FRAMEWORK_DIR,
+        "Drivers",
+        "CMSIS",
+        "Device",
+        "ST",
+        MCU_FAMILY.upper() + "xx",
+        "Include",
+    ))
+    env_cpppath.append( os.path.join(
+        FRAMEWORK_DIR,
+        "Drivers",
+        MCU_FAMILY.upper() + "xx_HAL_Driver",
+        "Inc",
+    ))
+    env_cpppath.append( os.path.join(
+        FRAMEWORK_DIR,
+        "Drivers",
+        MCU_FAMILY.upper() + "xx_HAL_Driver",
+        "Src",
+    ))
+
 env.Append(
     ASFLAGS=machine_flags,
     ASPPFLAGS=[
@@ -239,32 +267,7 @@ env.Append(
         ("F_CPU", "$BOARD_F_CPU")
     ],
 
-    CPPPATH=[
-        "$PROJECT_SRC_DIR",
-        "$PROJECT_INCLUDE_DIR",
-        os.path.join(FRAMEWORK_DIR, "Drivers", "CMSIS", "Include"),
-        os.path.join(
-            FRAMEWORK_DIR,
-            "Drivers",
-            "CMSIS",
-            "Device",
-            "ST",
-            MCU_FAMILY.upper() + "xx",
-            "Include",
-        ),
-        os.path.join(
-            FRAMEWORK_DIR,
-            "Drivers",
-            MCU_FAMILY.upper() + "xx_HAL_Driver",
-            "Inc",
-        ),
-        os.path.join(
-            FRAMEWORK_DIR,
-            "Drivers",
-            MCU_FAMILY.upper() + "xx_HAL_Driver",
-            "Src",
-        ),
-    ],
+    CPPPATH=env_cpppath,
 
     CXXFLAGS=[
         "-fno-rtti",
