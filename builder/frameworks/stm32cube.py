@@ -262,10 +262,13 @@ env.Append(
         "-nostdlib",
     ],
 
+    
     CPPDEFINES=[
-        "USE_HAL_DRIVER",
+        # "USE_HAL_DRIVER",
         ("F_CPU", "$BOARD_F_CPU")
     ],
+    
+
 
     CPPPATH=env_cpppath,
 
